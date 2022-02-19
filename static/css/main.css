@@ -1,0 +1,69 @@
+html,
+body {
+    height:100%;
+    background-color: #B8BAA9 !important;
+    color: #303D40;
+    font-family: 'Open Sans' !important;
+    
+}
+
+.global-container{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    float: right;
+    padding-right: 120px;
+    padding-top: 150px;
+}
+.signup{
+    padding-top: 90px;
+}
+
+form{
+    padding-top: 50px;
+    font-size: 14px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.login-form{
+    width: 400px;
+    height: 430px;
+    margin: 20px;
+    background-color: #838573 !important;
+    border: 10px !important;
+    border-radius: 10px !important;
+}
+
+input[type="email"],
+input[type="password"],input[type="text"]{
+    background-color:#B5CED3 ;
+    color: #303D40 !important;
+    border-radius: 10px;
+    height: 48px;
+}
+
+.btn{
+    background-color: #303D40 !important;
+    border: #303D40 !important;
+    height: 48px !important;
+    width: 330px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    border-radius: 10px !important;
+}
+.footer{
+    background-color: #303D40;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+.navbar-custom {
+    background-color: #303D40;
+}
+.navbar-brand {
+    color: #ffffff;
+}

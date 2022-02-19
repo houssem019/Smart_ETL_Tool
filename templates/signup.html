@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Signup</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="text-center" style="padding-top: 40px;">
+                <img src="{{ url_for('static',filename='images/logo.png') }}" class="img-fluid" alt="Responsive image"
+                    height="300" width="350">
+                <div class="container" style="padding-top: 20px; padding-left: 60px;">
+                    <p style="text-align: start; font-weight: bold;color: #303D40; font-size: 22px;">
+                        Combine data from multiple data sources into a single, consistent data store and
+                        load it into your data warehouse.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+            <div class="global-container">
+                <div class="card login-form" style="height: 480px;">
+                    <div class="card-body">
+                        <div class="card-text text-center">
+                            <form name="signup_form">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" placeholder="Name" required>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" placeholder="Email address"
+                                        required>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                        required>
+                                </div>
+                                <p class="error error--hidden"></p>
+                                <br>
+                                <input type="submit" class="btn btn-primary btn-block" value="Register"></input>
+                                <div class="signup" class="align-text-bottom" style="color: #ffffff; font-size: 17px;">
+                                    Already have an account? <a href="/"
+                                        style="color: #ffffff ;font-weight: bold;  font-size: 18px;text-decoration:none;">Sign
+                                        in</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container" style=" padding-top: 10px;">
+        <a href="#"
+            style="text-decoration:none;color: white; font-size: 17px; padding-right: 20px;font-weight: bold;">About
+            us</a>
+        <a href="#" style="text-decoration:none;color: white;  font-size: 17px;font-weight: bold;">Contact us</a>
+    </div>
+</footer>
+
+{% endblock %}
