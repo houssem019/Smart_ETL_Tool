@@ -1,8 +1,9 @@
-from flask import Flask, redirect, render_template,session
+from flask import Flask, redirect, render_template,session, url_for
 from functools import wraps
 import pymongo
 import os
 from werkzeug.utils import secure_filename
+from filter import *
 
 app=Flask(__name__)
 app.secret_key='intelligentetlprojecthoussemamanisupervisedbymaherheni'
@@ -43,13 +44,18 @@ def extract():
     if form.validate_on_submit():
         file = form.file.data # First grab the file
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
-        return "File has been uploaded."
+        return redirect(url_for('filter'))
     return render_template('extract.html',form=form)
 
 @app.route('/transform')
 @login_required
 def transform():
     return render_template('transform.html')
+
+@app.route('/transform/filter',methods=['GET','POST'])
+@login_required
+def filter():
+    return render_template('filter.html',data=data)
 
 @app.route('/load')
 @login_required
