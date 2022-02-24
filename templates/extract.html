@@ -61,18 +61,27 @@
             </div>
 
         </li>
-        <li class="container "
+        <li class="container" id="cont1"
             style=" width: 150px;
         height: 150px;float: left;margin: 10px ;padding: 3px;display: inline;background-color: #838573;border-radius: 20px;">
             <div class="center">
-                <img src="{{ url_for('static',filename='images/csv.png') }}" class="img-fluid" alt="Firebird"
-                    style="
-            max-width: 120px; transform: translate(12px,12px);">
-
+                <input onclick="show_hide()" type="image" src="{{ url_for('static',filename='images/csv.png') }}" class="img-fluid" name="submit" style="
+                max-width:120px; transform: translate(12px,12px);" alt="submit">
             </div>
-
         </li>
-
+        <li class="container" id="cont2"
+            style=" width: 420px;
+        height: 150px;float: left;margin: 10px ;padding: 3px;display: inline;background-color: #838573;border-radius: 20px;">
+            <div class="center">
+                <input onclick="show_hide()" type="image" src="{{ url_for('static',filename='images/csv.png') }}" class="img-fluid" name="submit" style="
+                max-width: 50px; transform: translate(12px,12px);" alt="submit">
+            </div>
+            <form method='POST' enctype='multipart/form-data'>
+                {{form.hidden_tag()}}
+                {{form.file()}}
+                {{form.submit()}}
+            </form>
+        </li>
     </ul>
 
 

@@ -1,3 +1,4 @@
+document.getElementById("cont2").style.display="none";
 $("form[name=signup_form").submit(function(e) {
   alert("Registred Successfully");
 
@@ -42,3 +43,17 @@ $("form[name=login_form").submit(function(e) {
 
   e.preventDefault();
 });
+var a=1;
+function show_hide(){
+  if(a==1){
+    document.getElementById("cont2").style.display="inline";
+    document.getElementById("cont1").style.display="none";
+    return a=0;
+  }
+  else{
+    document.getElementById("cont2").style.display="none";
+    document.getElementById("cont1").style.display="inline";
+    return a=1;
+  }
+
+}
