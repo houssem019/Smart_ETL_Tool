@@ -1,15 +1,18 @@
 from fileinput import filename
 from flask import Flask, redirect, render_template,session, url_for
 from functools import wraps
+from flask_sqlalchemy import SQLAlchemy
 import pymongo
 import gridfs
 import os
+from sqlalchemy import PrimaryKeyConstraint
 from werkzeug.utils import secure_filename
 
 app=Flask(__name__)
 app.secret_key='intelligentetlprojecthoussemamanisupervisedbymaherheni'
 app.config['SECRET_KEY'] = 'houssemamani'
 app.config['UPLOAD_FOLDER'] = 'static/files'
+
 
 client=pymongo.MongoClient("mongodb+srv://houssem:05347268hO.@cluster0.e0gv8.mongodb.net/test")
 db=client.etl
