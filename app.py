@@ -1,7 +1,8 @@
+from dataclasses import dataclass
 from fileinput import filename
 from flask import Flask, redirect, render_template,session, url_for
 from functools import wraps
-from flask_sqlalchemy import SQLAlchemy
+import pandas as pd
 import pymongo
 import gridfs
 import os
@@ -33,6 +34,7 @@ def login_required(f):
 from user.routes import *
 from user.upload import UploadFileForm
 
+
 @app.route('/')
 def home():
     return render_template('signin.html')
@@ -48,7 +50,12 @@ def extract():
     if form.validate_on_submit():
         uploaded_file = form.file.data # First grab the file
         files.put(uploaded_file,filename=uploaded_file.filename)
-        local_location="E:/P2M/ETL/static/files/"+uploaded_file.filename
+        parent_dir="E:/P2M/ETL/static/files/"
+        dir=session['user']['name']
+        path=os.path.join(parent_dir,dir)
+        if not os.path.exists(path):
+            os.mkdir(path)
+        local_location=path+"/"+uploaded_file.filename
         downloaded_file=db.fs.files.find_one({'filename':uploaded_file.filename})
         outputdata=files.get(downloaded_file['_id']).read()
         output=open(local_location,"wb")
@@ -66,7 +73,24 @@ def transform():
 @app.route('/transform/filter',methods=['GET','POST'])
 @login_required
 def filter():
-    return render_template('filter.html')
+    parent_dir="E:/P2M/ETL/static/files/"
+    dir=session['user']['name']
+    path=os.path.join(parent_dir,dir)
+    files_list=os.listdir(path)
+    print(type(files_list))
+    return render_template('filter.html',files_list=files_list,len=len(files_list))
+
+@app.route('/transform/filter/<string:name>')
+@login_required
+def function(name):
+    parent_dir="E:/P2M/ETL/static/files/"
+    dir=session['user']['name']
+    path=os.path.join(parent_dir,dir)
+    files_list=os.listdir(path)
+    if name in files_list:
+        final_path=os.path.join(path,name)
+        df=pd.read_csv(final_path)
+        return render_template('csv.html',df=df)
 
 @app.route('/load')
 @login_required

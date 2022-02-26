@@ -6,29 +6,45 @@
 
 {% block body %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Smart ETL Tool</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/extract">Extract</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/transform">Transform</a>
-          </li>
-          <li class="nav-item" style="padding-right: 80px;">
-            <a class="nav-link" href="/load">Load</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/user/signout">Logout</a>
-          </li>
-        </ul>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Smart ETL Tool</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/extract">Extract</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/transform">Transform</a>
+        </li>
+        <li class="nav-item" style="padding-right: 60px;">
+          <a class="nav-link" aria-current="page" href="/load">Load</a>
+        </li>
+        <li class="nav-item" style="padding-right: 15px;">
+          <a class="nav-link" href="#">{{ session['user']['name'] }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/signout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid" style="align-items: center; padding-top: 50px;">
+  <div class="card" style="border-radius: 10px;background-color: #303D40;">
+    <div class="card-body">
+      <h5 class="card-title" style="color:#B8BAA9;">Uploaded Files</h5>
+      <h7 class="card-subtitle mb-2 text-muted">Choose your file</h7>
+      <div class="list-group" style="padding-top: 10px;">
+        {% for i in range(0,len) %}
+        <a href="/transform/filter/{{ files_list[i] }}" class="list-group-item list-group-item-action">{{ files_list[i]
+          }}</a>
+        {% endfor %}
       </div>
     </div>
-  </nav>
-  <div class="container">
   </div>
+</div>
 {% endblock %}

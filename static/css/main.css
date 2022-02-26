@@ -63,6 +63,16 @@ input[type="password"],input[type="text"]{
     font-weight: bold !important;
     border-radius: 10px !important;
 }
+.btni{
+    background-color: #B5CED3 !important;
+    border: #B5CED3 !important;
+    height: 40px !important;
+    width: 180px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    border-radius: 10px !important;
+    float: right;
+}
 .footer{
     background-color: #303D40;
     position: absolute;
