@@ -80,6 +80,8 @@ def filter():
     print(type(files_list))
     return render_template('filter.html',files_list=files_list,len=len(files_list))
 
+from filter import *
+
 @app.route('/transform/filter/<string:name>')
 @login_required
 def function(name):
@@ -89,8 +91,13 @@ def function(name):
     files_list=os.listdir(path)
     if name in files_list:
         final_path=os.path.join(path,name)
-        df=pd.read_csv(final_path)
-        return render_template('csv.html',df=df)
+        df=read(final_path)
+        X,y,_=preparation(df)
+        if problem_type(y)==1:
+            problem="Regression"
+        else:
+            problem="Classification"
+        return render_template('csv.html',df=df,X=X,y=y,problem=problem)
 
 @app.route('/load')
 @login_required
