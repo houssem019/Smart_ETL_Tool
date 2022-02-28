@@ -4,6 +4,7 @@ from flask import Flask
 import numpy as np
 from sklearn.feature_selection import mutual_info_regression
 from sklearn.feature_selection import mutual_info_classif
+import os
 
 def read(path):
     df=pd.read_csv(path)
@@ -34,19 +35,21 @@ def mi_scores_for_regression(X, y, discrete_features):
     return mi_scores
 
 def mi_scores_for_classification(X, y, discrete_features):
-    d={}
     mi_scores = mutual_info_classif(X, y, discrete_features=discrete_features)
     mi_scores = pd.Series(mi_scores, name="MI Scores", index=X.columns)
     mi_scores = mi_scores.sort_values(ascending=False)
     return mi_scores
 
-def plot_mi_scores(scores):
+def plot_mi_scores(scores,path):
     scores = scores.sort_values(ascending=True)
     width = np.arange(len(scores))
     ticks = list(scores.index)
     plt.barh(width, scores)
     plt.yticks(width, ticks)
     plt.title("Mutual Information Scores")
+    if os.path.exists(path):
+        return 0
+    plt.savefig(path)
 
 def filter_features(scores):
     final_scores={}

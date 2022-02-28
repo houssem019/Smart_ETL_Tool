@@ -33,16 +33,23 @@
     </div>
   </div>
 </nav>
+
 <div>
-  {{ df.head() }}
+  <p>First 5 rows of your data</p>
+  <div class="container-fluid" style="align-items: center; padding-top: 30px;">
+    {{ table | safe }}
+  </div>
 </div>
 <div>
-  {{ X.head() }}
-</div>
-<div>
-  {{ y.head() }}
-</div>
-<div>
+  <p>Your Problem type</p>
   {{ problem }}
+</div>
+<br>
+<div>
+  <p>Mutual infomation scores plot before filtring the columns</p>
+  {{ scores }}
+</div>
+<div>
+  <img src="{{ url_for('static',filename=path) }}" class="img-fluid">
 </div>
 {% endblock %}

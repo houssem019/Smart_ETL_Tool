@@ -1,18 +1,12 @@
-from dataclasses import dataclass
-from fileinput import filename
 from flask import Flask, redirect, render_template,session, url_for
 from functools import wraps
-import pandas as pd
 import pymongo
 import gridfs
 import os
-from sqlalchemy import PrimaryKeyConstraint
 from werkzeug.utils import secure_filename
 
 app=Flask(__name__)
 app.secret_key='intelligentetlprojecthoussemamanisupervisedbymaherheni'
-app.config['SECRET_KEY'] = 'houssemamani'
-app.config['UPLOAD_FOLDER'] = 'static/files'
 
 
 client=pymongo.MongoClient("mongodb+srv://houssem:05347268hO.@cluster0.e0gv8.mongodb.net/test")
@@ -85,19 +79,31 @@ from filter import *
 @app.route('/transform/filter/<string:name>')
 @login_required
 def function(name):
-    parent_dir="E:/P2M/ETL/static/files/"
+    scores=[]
+    parent_dir_files="E:/P2M/ETL/static/files/"
+    parent_dir_charts="E:/P2M/ETL/static/charts/"
     dir=session['user']['name']
-    path=os.path.join(parent_dir,dir)
-    files_list=os.listdir(path)
+    path_files=os.path.join(parent_dir_files,dir)
+    path_charts=os.path.join(parent_dir_charts,dir)
+    if not os.path.exists(path_charts):
+            os.mkdir(path_charts)
+    files_list=os.listdir(path_files)
     if name in files_list:
-        final_path=os.path.join(path,name)
-        df=read(final_path)
-        X,y,_=preparation(df)
+        name_chart=name[:-3]+"png"
+        final_path_files=os.path.join(path_files,name)
+        final_path_charts=os.path.join(path_charts,name_chart)
+        path="charts/"+dir+"/"+name_chart
+        df=read(final_path_files)
+        X,y,discrete_features=preparation(df)
         if problem_type(y)==1:
             problem="Regression"
+            scores=mi_scores_for_regression(X,y,discrete_features)
+            plot_mi_scores(scores,final_path_charts)
         else:
             problem="Classification"
-        return render_template('csv.html',filename=name[:-4],df=df,X=X,y=y,problem=problem)
+            scores=mi_scores_for_classification(X,y,discrete_features)
+            plot_mi_scores(scores,final_path_charts)
+        return render_template('csv.html',path=path,scores=scores,table=df.head().to_html(classes='dataframe'),filename=name[:-4],df=df,X=X,y=y,problem=problem)
 
 @app.route('/load')
 @login_required
