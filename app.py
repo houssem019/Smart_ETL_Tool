@@ -97,7 +97,7 @@ def function(name):
             problem="Regression"
         else:
             problem="Classification"
-        return render_template('csv.html',df=df,X=X,y=y,problem=problem)
+        return render_template('csv.html',filename=name[:-4],df=df,X=X,y=y,problem=problem)
 
 @app.route('/load')
 @login_required
