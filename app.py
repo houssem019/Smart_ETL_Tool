@@ -79,7 +79,6 @@ from filter import *
 @app.route('/transform/filter/<string:name>')
 @login_required
 def function(name):
-    scores=[]
     parent_dir_files="E:/P2M/ETL/static/files/"
     parent_dir_charts="E:/P2M/ETL/static/charts/"
     dir=session['user']['name']
