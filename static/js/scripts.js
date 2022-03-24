@@ -44,9 +44,7 @@ $("form[name=login_form").submit(function(e) {
   e.preventDefault();
 });
 
-
 var a=1;
-document.getElementById("cont2").style.display="none";
 function show_hide(){
   if(a==1){
     document.getElementById("cont2").style.display="inline";
@@ -59,4 +57,11 @@ function show_hide(){
     return a=1;
   }
 
+}
+
+function activate(){
+  document.getElementById("download").className="btn btn-primary btn-block";
+}
+window.onload = function() {
+  document.getElementById('download').addEventListener('click',activate);
 }

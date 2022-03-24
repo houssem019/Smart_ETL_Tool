@@ -34,21 +34,109 @@
   </div>
 </nav>
 
-<div>
-  <p>First 5 rows of your data</p>
-  <div class="container-fluid" style="align-items: center; padding-top: 30px;">
-    {{ table | safe }}
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-sm-6">
+        <div class="card">
+          <div class="stat-widget-two card-body">
+            <div class="stat-content">
+              <div class="stat-text">Problem Type </div>
+              <div class="stat-digit"> <i class="fa fa-usd"></i>{{ problem }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card">
+          <div class="stat-widget-two card-body">
+            <div class="stat-content">
+              <div class="stat-text">Features number</div>
+              <div class="stat-digit"> <i class="fa fa-usd"></i>{{X.shape[1]}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card">
+          <div class="stat-widget-two card-body">
+            <div class="stat-content">
+              <div class="stat-text">Rows number</div>
+              <div class="stat-digit"> <i class="fa fa-usd"></i>{{X.shape[0]}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card">
+          <div class="stat-widget-two card-body">
+            <div class="stat-content">
+              <div class="stat-text">Target name</div>
+              <div class="stat-digit"> <i class="fa fa-usd"></i>{{y.name}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- /# card -->
+      </div>
+      <!-- /# column -->
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">First 5 rows of your data</h4>
+          </div>
+          <div class="card-body">
+            <div class="col-xl-12 col-lg-12">
+              <div>
+                <div class="container-fluid" style="align-items: center; padding-top: 30px;">
+                  {{ table | safe }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 col-lg-8 col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Mutual infomation scores</h4>
+          </div>
+          <div class="card-body">
+            <div class="col-xl-12 col-lg-8">
+              <div>
+                <img src="{{ url_for('static',filename=path) }}" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Scores</h4>
+          </div>
+          <div class="card-body text-center">
+            <i class="ti-control-shuffle pa" style="text-align: start;">
+              {% for i in range(0,length) %}
+              <p>{{scores.index[i]}}: {{scores[i]}}</p>
+              {% endfor %}
+            </i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="padding-bottom: 30px; padding-left: 12px; padding-right: 12px;">
+      <div class="card">
+        <div class="row justify-content-between" style="padding-bottom: 30px; padding-left: 30px; padding-right: 30px;">
+          <a class="btn btn-primary btn-block" onclick="activate()" id="filter" style="padding-top: 10px;" href="/transform/filter/{{ name }}/done!" role="button">Filter your data</a>
+          <a class="btn btn-primary btn-block" id="download" style="padding-top: 10px;" href="/transform/filter/{{ name }}/download" role="button" aria-disabled="true">Download new data</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div>
-  <p>Your Problem type</p>
-  {{ problem }}
-</div>
-<br>
-<div>
-  <p>Mutual infomation scores plot before filtring the columns</p>
-</div>
-<div>
-  <img src="{{ url_for('static',filename=path) }}" class="img-fluid">
-</div>
+
 {% endblock %}

@@ -106,3 +106,6 @@ table.dataframe, .dataframe th, .dataframe td {
     margin-bottom: 40px;
     font-size: 0.9em;
   }
+.row {
+    padding-top: 30px;
+}

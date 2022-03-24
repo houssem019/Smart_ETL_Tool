@@ -46,15 +46,14 @@ def plot_mi_scores(scores,path):
     ticks = list(scores.index)
     plt.barh(width, scores)
     plt.yticks(width, ticks)
-    plt.title("Mutual Information Scores")
     if os.path.exists(path):
         return 0
     plt.savefig(path)
 
-def filter_features(scores):
-    final_scores={}
+def filter_features(dataframe,scores,path):
+    final_data = dataframe.copy()
     for i in range(0,len(scores)):
-        if (scores[i]>0.0001):
-            final_scores[scores.index[i]]=scores[i]
-    return final_scores
+        if (scores[i]<0.0006):
+            final_data.drop(scores.index[i],axis=1,inplace=True)
+    final_data.to_csv(path)
 
