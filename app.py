@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template,session, url_for, send_file
+from flask import Flask, redirect,request, render_template,session, url_for, send_file
 from functools import wraps
 import pymongo
 import gridfs
@@ -128,7 +128,7 @@ def filtred(name):
             scores = pickle.load(fp)
     df=read(final_path_files)
     filter_features(df,scores,path_filtred_file)
-    return redirect(url_for('function',name=name))
+    return redirect(request.referrer)
 
 @app.route('/transform/filter/<string:name>/download',methods=['GET','POST'])
 @login_required
