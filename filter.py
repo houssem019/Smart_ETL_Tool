@@ -55,5 +55,5 @@ def filter_features(dataframe,scores,path):
     for i in range(0,len(scores)):
         if (scores[i]<0.0006):
             final_data.drop(scores.index[i],axis=1,inplace=True)
-    final_data.to_csv(path)
+    final_data.to_csv(path,index=False)
 

@@ -40,6 +40,7 @@
     <div class="row justify-content-between">
       <div class="box cyan">
         <h2>Problem Type</h2>
+        <br>
         <p>{{ problem }}</p>
         <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
       </div>
@@ -53,6 +54,7 @@
         </div> -->
       <div class="box red">
         <h2>Features</h2>
+        <br>
         <p>{{X.shape[1]}}</p>
         <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
       </div>
@@ -66,6 +68,7 @@
         </div> -->
       <div class="box blue">
         <h2>Rows</h2>
+        <br>
         <p>{{X.shape[0]}}</p>
         <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
       </div>
@@ -79,6 +82,7 @@
         </div> -->
       <div class="box orange">
         <h2>Target name</h2>
+        <br>
         <p>{{y.name}}</p>
         <img src="https://assets.codepen.io/2301174/icon-karma.svg" alt="">
       </div>
@@ -95,10 +99,8 @@
     </div>
     <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">First 5 rows of your data</h4>
-          </div>
+        <div class="card blue">
+          <h2>First 5 rows of your data</h2>
           <div class="card-body">
             <div class="col-xl-12 col-lg-12">
               <div>
@@ -113,10 +115,8 @@
     </div>
     <div class="row">
       <div class="col-xl-8 col-lg-8 col-md-8">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Mutual infomation scores</h4>
-          </div>
+        <div class="card red">
+          <h2 class="card-title">Mutual infomation scores</h2>
           <div class="card-body">
             <div class="col-xl-12 col-lg-8">
               <div>
@@ -127,26 +127,24 @@
         </div>
       </div>
       <div class="col-xl-4 col-lg-4 col-md-4">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Scores</h4>
-          </div>
+        <div class="card cyan">
+          <h2 class="card-title">Scores</h2>
           <div class="card-body text-center">
             <i class="ti-control-shuffle pa" style="text-align: start;">
               {% for i in range(0,length) %}
-              <p>{{scores.index[i]}}: {{scores[i]}}</p>
+              <p>{{scores.index[i]}}:{{"{:.5f}".format(scores[i])}}</p>
               {% endfor %}
             </i>
           </div>
         </div>
       </div>
     </div>
-    <div class="row" style="padding-bottom: 30px; padding-left: 12px; padding-right: 12px;">
-      <div class="card">
+    <div class="row" style="padding-bottom: 30px; padding-left: 12px; padding-right: 50px;">
+      <div class="card orange">
         <div class="row justify-content-between" style="padding-bottom: 30px; padding-left: 30px; padding-right: 30px;">
           <a class="btn btn-primary btn-block" onclick="activate()" id="filter" style="padding-top: 10px;"
             href="/transform/filter/{{ name }}/done!" role="button">Filter your data</a>
-          <a class="btn btn-primary btn-block disabled" id="download" style="padding-top: 10px;"
+          <a class="btn btn-primary btn-block" id="download" style="padding-top: 10px;"
             href="/transform/filter/{{ name }}/download" role="button" aria-disabled="true">Download new data</a>
         </div>
       </div>

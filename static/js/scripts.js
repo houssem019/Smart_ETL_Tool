@@ -60,10 +60,6 @@ function show_hide(){
 }
 
 function activate(){
-  document.getElementById("download").className+="btn btn-primary btn-block";
-  alert("Registred Successfully");
+  alert("Filtred Successfully");
 
-}
-window.onload = function() {
-  document.getElementById('download').addEventListener('click',activate);
 }
