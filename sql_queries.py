@@ -16,7 +16,7 @@ class SqlQuery:
 
 mysql_query = SqlQuery(mysql_extract, mysql_insert)
 
-# store as list for iteration
+# store as list for iteration 
 mysql_queries = [mysql_query]
 
 
