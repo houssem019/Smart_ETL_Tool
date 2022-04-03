@@ -44,12 +44,13 @@ def register():
 @app.route('/extract',methods=['GET','POST'])
 @login_required
 def extract():
-    form=UploadFileForm()
-    if form.validate_on_submit():
-        file = form.file.data # First grab the file
+    mysql_form=UploadFileForm()
+    if mysql_form.validate_on_submit():
+        file = mysql_form.file.data # First grab the file
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
         return redirect(url_for('filter'))
-    return render_template('extract.html',form=form)
+    
+    return render_template('extract.html',form=mysql_form)
 
 @app.route('/transform')
 @login_required

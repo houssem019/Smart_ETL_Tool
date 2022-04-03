@@ -76,3 +76,16 @@ input[type="password"],input[type="text"]{
 .navbar-brand {
     color: #ffffff;
 }
+#mysql_form input:focus, #mysql_form textarea:focus {
+	outline:0;
+	border:1px solid #999;
+}
+
+#mysql_form input[type="text"],#mysql_form input[type="password"]{
+  
+        background-color:#B5CED3 ;
+        color: #303D40 !important;
+        border-radius: 10px;
+        height: 40px;
+        margin-bottom: 2px;
+     }

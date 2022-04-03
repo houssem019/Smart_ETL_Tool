@@ -40,14 +40,38 @@
 </div>
 <div class="source" style="margin-top: 80px ;padding-left:100px;">
     <ul class="sources" style="list-style-type: none">
-        <li class="source-item"
-            style=" width: 150px;
-        height: 150px;float: left;margin: 10px ;padding: 3px;display: inline;background-color: #838573;border-radius: 20px;">
-            <div class="center">
-                <img src="{{ url_for('static',filename='images/MySQL.png') }}" class="img-fluid" alt="MySql"
-                    style="padding-top: 20px;">
-
-            </div>
+        <li class="container" id="cont1_1"
+        style=" width: 150px;
+    height: 150px;float: left;margin: 10px ;padding: 3px;display: inline;background-color: #838573;border-radius: 20px;">
+        <div class="center">
+            <input onclick="show_hide1()" type="image" src="{{ url_for('static',filename='images/MySQL.png') }}" class="img-fluid" name="submit" style="
+            max-width:120px; transform: translate(12px,12px);" alt="submit">
+        </div>
+        </li>
+        <li class="container" id="cont2_1"
+        style=" width: 480px;
+    height: 340px;float: left;margin: 10px ;padding: 3px;display: inline;background-color: #838573;border-radius: 20px;">
+        <div class="center">
+            <input onclick="show_hide1()" type="image" src="{{ url_for('static',filename='images/MySQL.png') }}" class="img-fluid" name="submit" style="
+            max-width: 50px; transform: translate(12px,12px);" alt="submit">
+        </div>
+            <form  style="text-align: center; "id="mysql_form" method='POST' enctype='multipart/form-data'>
+                <fieldset>
+                    <input placeholder="User" type="text" tabindex="1" required autofocus>
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Password" type="password" tabindex="2" required>
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Host" type="text" tabindex="3" required>
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Database" type="text" tabindex="4" required>
+                </fieldset>
+                <fieldset>
+                    <button name="submit" type="submit" class="btno btn-primary btn-block" id="contact-submit" data-submit="...Sending">Submit</button>
+                </fieldset>
+            </form>
 
         </li>
         <li class="container "
@@ -76,11 +100,8 @@
                 <input onclick="show_hide()" type="image" src="{{ url_for('static',filename='images/csv.png') }}" class="img-fluid" name="submit" style="
                 max-width: 50px; transform: translate(12px,12px);" alt="submit">
             </div>
-            <form method='POST' enctype='multipart/form-data'>
-                {{form.hidden_tag()}}
-                {{form.file()}}
-                {{form.submit(class="btno btn-primary btn-block")}}
-            </form>
+
+
         </li>
     </ul>
 

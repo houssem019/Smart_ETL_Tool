@@ -58,3 +58,17 @@ function show_hide(){
   }
 
 }
+document.getElementById("cont2_1").style.display="none";
+function show_hide1(){
+  if(a==1){
+    document.getElementById("cont2_1").style.display="inline";
+    document.getElementById("cont1_1").style.display="none";
+    return a=0;
+  }
+  else{
+    document.getElementById("cont2_1").style.display="none";
+    document.getElementById("cont1_1").style.display="inline";
+    return a=1;
+  }
+
+}
