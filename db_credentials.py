@@ -3,6 +3,7 @@ datawarehouse_name = 'your_datawarehouse_name'
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 #db = SQLAlchemy(app)
 #list
+
 mysql_db_config = [
   {
     'user': 'your_user_1',

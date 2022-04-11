@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block head %}
@@ -55,23 +56,16 @@
             <input onclick="show_hide1()" type="image" src="{{ url_for('static',filename='images/MySQL.png') }}" class="img-fluid" name="submit" style="
             max-width: 50px; transform: translate(12px,12px);" alt="submit">
         </div>
-            <form  style="text-align: center; "id="mysql_form" method='POST' enctype='multipart/form-data'>
-                <fieldset>
-                    <input placeholder="User" type="text" tabindex="1" required autofocus>
-                </fieldset>
-                <fieldset>
-                    <input placeholder="Password" type="password" tabindex="2" required>
-                </fieldset>
-                <fieldset>
-                    <input placeholder="Host" type="text" tabindex="3" required>
-                </fieldset>
-                <fieldset>
-                    <input placeholder="Database" type="text" tabindex="4" required>
-                </fieldset>
-                <fieldset>
-                    <button name="submit" type="submit" class="btno btn-primary btn-block" id="contact-submit" data-submit="...Sending">Submit</button>
-                </fieldset>
-            </form>
+        <form id="mysql_form" style="text-align: center;" method='POST' enctype='multipart/form-data'>
+            {{mysql_form.hidden_tag()}}
+            {{mysql_form.user(placeholder="User")}}<br>
+            {{mysql_form.password(placeholder="Password")}}<br>
+            {{mysql_form.host(placeholder="Host")}}<br>
+            {{mysql_form.database(placeholder="Database")}}<br>
+            <fieldset>
+                <button name="submit" type="submit" class="btno btn-primary btn-block" id="contact-submit" data-submit="...Sending">Submit</button>
+            </fieldset>
+        </form>
 
         </li>
         <li class="container "

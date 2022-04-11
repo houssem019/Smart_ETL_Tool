@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template,session, url_for
+from flask import Flask, redirect, render_template,session, url_for, request
 from functools import wraps
 import pymongo
 import gridfs
@@ -31,7 +31,7 @@ def login_required(f):
 
  #routes
 from user.routes import *
-from user.upload import UploadFileForm
+from user.upload import My_SQL_Form, UploadFileForm
 
 @app.route('/')
 def home():
@@ -40,17 +40,29 @@ def home():
 @app.route('/register')
 def register():
     return render_template('signup.html')
-
+import mysql.connector
+from mysql.connector import Error
 @app.route('/extract',methods=['GET','POST'])
 @login_required
 def extract():
-    mysql_form=UploadFileForm()
+    mysql_form=My_SQL_Form()
     if mysql_form.validate_on_submit():
-        file = mysql_form.file.data # First grab the file
-        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
-        return redirect(url_for('filter'))
+        user = request.form.get('user') 
+        password=request.form.get('password')
+        host=request.form.get('host')
+        database=request.form.get('database')
+        
+        
+        connection = mysql.connector.connect(host=request.form.get('host'),
+                                     database=request.form.get('database'),
+                                         user = request.form.get('user'),
+                                         password=request.form.get('password'))
+        if connection.is_connected():
+            return("connected")
+        else:
+            return("no")
     
-    return render_template('extract.html',form=mysql_form)
+    return render_template('extract.html',mysql_form=mysql_form)
 
 @app.route('/transform')
 @login_required
