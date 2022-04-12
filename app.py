@@ -41,7 +41,6 @@ def home():
 def register():
     return render_template('signup.html')
 import mysql.connector
-from mysql.connector import Error
 @app.route('/extract',methods=['GET','POST'])
 @login_required
 def extract():
@@ -51,17 +50,16 @@ def extract():
         password=request.form.get('password')
         host=request.form.get('host')
         database=request.form.get('database')
-        
-        
-        connection = mysql.connector.connect(host=request.form.get('host'),
+        try:
+            connection = mysql.connector.connect(host=request.form.get('host'),
                                      database=request.form.get('database'),
                                          user = request.form.get('user'),
                                          password=request.form.get('password'))
-        if connection.is_connected():
-            return("connected")
-        else:
-            return("no")
-    
+            if connection.is_connected():
+                return("You're connected to database")
+        except :
+            return("Error while connecting to MySQL")
+
     return render_template('extract.html',mysql_form=mysql_form)
 
 @app.route('/transform')
