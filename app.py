@@ -56,7 +56,7 @@ def extract():
                                          user = request.form.get('user'),
                                          password=request.form.get('password'))
             if connection.is_connected():
-                return("You're connected to database")
+                return redirect(url_for('mysqltemp'))
         except :
             return("Error while connecting to MySQL")
 
@@ -66,7 +66,10 @@ def extract():
 @login_required
 def transform():
     return render_template('transform.html')
-
+@app.route('/transform/mysql',methods=['GET','POST'])
+@login_required
+def mysqltemp():
+    return render_template('mysql.html')
 @app.route('/transform/filter',methods=['GET','POST'])
 @login_required
 def filter():
