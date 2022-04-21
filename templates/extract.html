@@ -62,9 +62,19 @@
             {{mysql_form.password(placeholder="Password")}}<br>
             {{mysql_form.host(placeholder="Host")}}<br>
             {{mysql_form.database(placeholder="Database")}}<br>
+            
             <fieldset>
                 <button name="submit" type="submit" class="btno btn-primary btn-block" id="contact-submit" data-submit="...Sending">Submit</button>
             </fieldset>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
         </form>
 
         </li>

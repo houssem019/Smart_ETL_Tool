@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template,session, url_for, request
+from flask import Flask, redirect, render_template,session, url_for, request, flash
 from functools import wraps
 import pymongo
 import gridfs
@@ -58,7 +58,7 @@ def extract():
             if connection.is_connected():
                 return redirect(url_for('mysqltemp'))
         except :
-            return("Error while connecting to MySQL")
+            flash ("wrong credentials")
 
     return render_template('extract.html',mysql_form=mysql_form)
 
