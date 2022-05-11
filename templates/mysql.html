@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/mysql.css') }}">
 <title>MySQL</title>
 {% endblock %}
 
@@ -33,4 +34,46 @@
     </div>
   </div>
 </nav>
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row justify-content-between" >
+      <div class="box cyan" style="background-color: hsl(0, 0%, 98%);">
+        <h2>Database name</h2>
+        <br>
+        <p>name</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/148/148825.png" height="60px" alt="">
+      </div>
+
+
+      <div class="box red" style="background-color: hsl(0, 0%, 98%);" >
+        <h2>Tables</h2>
+        <br>
+        <p>num tables</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/2535/2535554.png" height="60px" alt="">
+      </div>
+
+  </div>
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 col-md-8">
+      <div class="card orange">
+        <h2 class="card-title">Class Diagram</h2>
+        <div class="card-body">
+          <div class="col-xl-12 col-lg-8">
+            <div>
+              <img src="https://cdn-icons-png.flaticon.com/512/2535/2535554.png" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="padding-bottom: 30px; padding-left: 12px; padding-right: 50px;">
+      <div class="card orange">
+        <div class="row justify-content-between" style="padding-bottom: 30px; padding-left: 1050px; padding-right: 30px;">
+          <a class="btn btn-primary btn-block" onclick="activate()" id="filter" style="padding-top: 10px;"
+            href="/transform/filter/{{ name }}/done!" role="button">Proceed to the transformation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
