@@ -1,6 +1,11 @@
-import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from flask import Flask
+from threading import Lock
+lock = Lock()
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import pandas as pd
 import numpy as np
 from sklearn.feature_selection import mutual_info_regression
 from sklearn.feature_selection import mutual_info_classif
@@ -42,13 +47,14 @@ def mi_scores_for_classification(X, y, discrete_features):
 
 def plot_mi_scores(scores,path):
     scores = scores.sort_values(ascending=True)
-    width = np.arange(len(scores))
-    ticks = list(scores.index)
-    plt.barh(width, scores)
-    plt.yticks(width, ticks)
-    if os.path.exists(path):
-        return 0
-    plt.savefig(path)
+    with lock:
+        width = np.arange(len(scores))
+        ticks = list(scores.index)
+        plt.barh(width, scores)
+        plt.yticks(width, ticks)
+        if os.path.exists(path):
+            return 0
+        plt.savefig(path)
 
 def filter_features(dataframe,scores,path):
     final_data = dataframe.copy()

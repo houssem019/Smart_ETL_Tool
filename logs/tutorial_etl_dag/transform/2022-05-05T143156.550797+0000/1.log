@@ -1,0 +1,22 @@
+[2022-05-05 14:32:03,704] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: tutorial_etl_dag.transform manual__2022-05-05T14:31:56.550797+00:00 [queued]>
+[2022-05-05 14:32:03,734] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: tutorial_etl_dag.transform manual__2022-05-05T14:31:56.550797+00:00 [queued]>
+[2022-05-05 14:32:03,735] {taskinstance.py:1249} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-05 14:32:03,736] {taskinstance.py:1250} INFO - Starting attempt 1 of 3
+[2022-05-05 14:32:03,737] {taskinstance.py:1251} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-05 14:32:04,492] {taskinstance.py:1270} INFO - Executing <Task(PythonOperator): transform> on 2022-05-05 14:31:56.550797+00:00
+[2022-05-05 14:32:04,504] {standard_task_runner.py:52} INFO - Started process 1048 to run task
+[2022-05-05 14:32:04,514] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tutorial_etl_dag', 'transform', 'manual__2022-05-05T14:31:56.550797+00:00', '--job-id', '82', '--raw', '--subdir', '/home/***/.local/lib/python3.7/site-packages/***/example_dags/tutorial_etl_dag.py', '--cfg-path', '/tmp/tmpc3wjpe6m', '--error-file', '/tmp/tmp3vos1m7j']
+[2022-05-05 14:32:04,515] {standard_task_runner.py:80} INFO - Job 82: Subtask transform
+[2022-05-05 14:32:04,708] {logging_mixin.py:109} INFO - Running <TaskInstance: tutorial_etl_dag.transform manual__2022-05-05T14:31:56.550797+00:00 [running]> on host 70e1e4d83c3a
+[2022-05-05 14:32:04,945] {taskinstance.py:1448} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=tutorial_etl_dag
+AIRFLOW_CTX_TASK_ID=transform
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-05T14:31:56.550797+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-05-05T14:31:56.550797+00:00
+[2022-05-05 14:32:05,038] {python.py:175} INFO - Done. Returned value was: None
+[2022-05-05 14:32:05,068] {taskinstance.py:1288} INFO - Marking task as SUCCESS. dag_id=tutorial_etl_dag, task_id=transform, execution_date=20220505T143156, start_date=20220505T143203, end_date=20220505T143205
+[2022-05-05 14:32:05,169] {local_task_job.py:154} INFO - Task exited with return code 0
+[2022-05-05 14:32:05,281] {local_task_job.py:264} INFO - 1 downstream tasks scheduled from follow-on schedule check

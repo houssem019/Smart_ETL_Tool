@@ -1,0 +1,29 @@
+[2022-05-11 20:04:38,346] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.load manual__2022-05-11T20:04:30.307756+00:00 [queued]>
+[2022-05-11 20:04:38,375] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.load manual__2022-05-11T20:04:30.307756+00:00 [queued]>
+[2022-05-11 20:04:38,376] {taskinstance.py:1249} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-11 20:04:38,377] {taskinstance.py:1250} INFO - Starting attempt 1 of 1
+[2022-05-11 20:04:38,378] {taskinstance.py:1251} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-11 20:04:38,470] {taskinstance.py:1270} INFO - Executing <Task(PythonOperator): load> on 2022-05-11 20:04:30.307756+00:00
+[2022-05-11 20:04:38,481] {standard_task_runner.py:52} INFO - Started process 4828 to run task
+[2022-05-11 20:04:38,491] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'Smart_ETL_Tool', 'load', 'manual__2022-05-11T20:04:30.307756+00:00', '--job-id', '170', '--raw', '--subdir', 'DAGS_FOLDER/etl_exemple.py', '--cfg-path', '/tmp/tmpvpiflwev', '--error-file', '/tmp/tmprtiex0cr']
+[2022-05-11 20:04:38,494] {standard_task_runner.py:80} INFO - Job 170: Subtask load
+[2022-05-11 20:04:38,700] {logging_mixin.py:109} INFO - Running <TaskInstance: Smart_ETL_Tool.load manual__2022-05-11T20:04:30.307756+00:00 [running]> on host 0b2ea813f779
+[2022-05-11 20:04:39,088] {taskinstance.py:1448} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=Smart_ETL_Tool
+AIRFLOW_CTX_TASK_ID=load
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-11T20:04:30.307756+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-05-11T20:04:30.307756+00:00
+[2022-05-11 20:04:39,092] {taskinstance.py:1774} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 174, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 188, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+TypeError: load() missing 1 required positional argument: 'tbl_dict'
+[2022-05-11 20:04:39,454] {taskinstance.py:1288} INFO - Marking task as FAILED. dag_id=Smart_ETL_Tool, task_id=load, execution_date=20220511T200430, start_date=20220511T200438, end_date=20220511T200439
+[2022-05-11 20:04:39,582] {standard_task_runner.py:98} ERROR - Failed to execute job 170 for task load (load() missing 1 required positional argument: 'tbl_dict'; 4828)
+[2022-05-11 20:04:39,659] {local_task_job.py:154} INFO - Task exited with return code 1
+[2022-05-11 20:04:40,376] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check

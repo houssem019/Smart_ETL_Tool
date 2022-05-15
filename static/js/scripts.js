@@ -1,6 +1,5 @@
 
 $("form[name=signup_form").submit(function(e) {
-  alert("Registred Successfully");
 
   var $form = $(this);
   var $error = $form.find(".error");

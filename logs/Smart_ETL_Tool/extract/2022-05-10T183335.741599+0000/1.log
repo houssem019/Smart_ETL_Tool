@@ -1,0 +1,42 @@
+[2022-05-10 18:33:41,576] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.extract manual__2022-05-10T18:33:35.741599+00:00 [queued]>
+[2022-05-10 18:33:41,595] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.extract manual__2022-05-10T18:33:35.741599+00:00 [queued]>
+[2022-05-10 18:33:41,595] {taskinstance.py:1249} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-10 18:33:41,595] {taskinstance.py:1250} INFO - Starting attempt 1 of 1
+[2022-05-10 18:33:41,596] {taskinstance.py:1251} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-10 18:33:41,680] {taskinstance.py:1270} INFO - Executing <Task(PythonOperator): extract> on 2022-05-10 18:33:35.741599+00:00
+[2022-05-10 18:33:41,695] {standard_task_runner.py:52} INFO - Started process 955 to run task
+[2022-05-10 18:33:41,701] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'Smart_ETL_Tool', 'extract', 'manual__2022-05-10T18:33:35.741599+00:00', '--job-id', '107', '--raw', '--subdir', 'DAGS_FOLDER/etl_exemple.py', '--cfg-path', '/tmp/tmp1blqeb4j', '--error-file', '/tmp/tmptwrnr4_0']
+[2022-05-10 18:33:41,703] {standard_task_runner.py:80} INFO - Job 107: Subtask extract
+[2022-05-10 18:33:41,906] {logging_mixin.py:109} INFO - Running <TaskInstance: Smart_ETL_Tool.extract manual__2022-05-10T18:33:35.741599+00:00 [running]> on host 0b2ea813f779
+[2022-05-10 18:33:43,432] {taskinstance.py:1448} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=Smart_ETL_Tool
+AIRFLOW_CTX_TASK_ID=extract
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-10T18:33:35.741599+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-05-10T18:33:35.741599+00:00
+[2022-05-10 18:33:43,440] {logging_mixin.py:109} INFO - done
+[2022-05-10 18:33:43,443] {logging_mixin.py:109} INFO - <***.providers.postgres.hooks.postgres.PostgresHook object at 0x7fa5ae31fc90>
+[2022-05-10 18:33:43,468] {base.py:79} INFO - Using connection to: id: postgres1_db. Host: docker.host.internal, Port: 5433, Schema: classicmodels, Login: postgres, Password: ***, extra: {}
+[2022-05-10 18:33:43,942] {taskinstance.py:1774} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 174, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 188, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_exemple.py", line 61, in extract
+    df = hook.get_pandas_df(sql)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/dbapi.py", line 137, in get_pandas_df
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/postgres/hooks/postgres.py", line 113, in get_conn
+    self.conn = psycopg2.connect(**conn_args)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "docker.host.internal" to address: Name or service not known
+
+[2022-05-10 18:33:44,013] {taskinstance.py:1288} INFO - Marking task as FAILED. dag_id=Smart_ETL_Tool, task_id=extract, execution_date=20220510T183335, start_date=20220510T183341, end_date=20220510T183344
+[2022-05-10 18:33:44,269] {standard_task_runner.py:98} ERROR - Failed to execute job 107 for task extract (could not translate host name "docker.host.internal" to address: Name or service not known
+; 955)
+[2022-05-10 18:33:44,330] {local_task_job.py:154} INFO - Task exited with return code 1
+[2022-05-10 18:33:45,442] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,58 @@
+[2022-05-11 19:20:35,154] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.extract manual__2022-05-11T19:20:30.327535+00:00 [queued]>
+[2022-05-11 19:20:35,181] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.extract manual__2022-05-11T19:20:30.327535+00:00 [queued]>
+[2022-05-11 19:20:35,183] {taskinstance.py:1249} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-11 19:20:35,183] {taskinstance.py:1250} INFO - Starting attempt 1 of 1
+[2022-05-11 19:20:35,184] {taskinstance.py:1251} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-11 19:20:35,278] {taskinstance.py:1270} INFO - Executing <Task(PythonOperator): extract> on 2022-05-11 19:20:30.327535+00:00
+[2022-05-11 19:20:35,285] {standard_task_runner.py:52} INFO - Started process 3543 to run task
+[2022-05-11 19:20:35,292] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'Smart_ETL_Tool', 'extract', 'manual__2022-05-11T19:20:30.327535+00:00', '--job-id', '160', '--raw', '--subdir', 'DAGS_FOLDER/etl_exemple.py', '--cfg-path', '/tmp/tmp8e7lnepx', '--error-file', '/tmp/tmp9y_297on']
+[2022-05-11 19:20:35,294] {standard_task_runner.py:80} INFO - Job 160: Subtask extract
+[2022-05-11 19:20:35,437] {logging_mixin.py:109} INFO - Running <TaskInstance: Smart_ETL_Tool.extract manual__2022-05-11T19:20:30.327535+00:00 [running]> on host 0b2ea813f779
+[2022-05-11 19:20:35,689] {taskinstance.py:1448} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=Smart_ETL_Tool
+AIRFLOW_CTX_TASK_ID=extract
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-11T19:20:30.327535+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-05-11T19:20:30.327535+00:00
+[2022-05-11 19:20:35,695] {logging_mixin.py:109} INFO - done
+[2022-05-11 19:20:35,696] {logging_mixin.py:109} INFO - <***.providers.postgres.hooks.postgres.PostgresHook object at 0x7f0f3cf16590>
+[2022-05-11 19:20:35,722] {base.py:79} INFO - Using connection to: id: postgres_db. Host: 172.18.0.8, Port: 5432, Schema: postgres, Login: ***, Password: ***, extra: {}
+[2022-05-11 19:20:36,186] {taskinstance.py:1774} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 2056, in execute
+    cur.execute(*args, **kwargs)
+psycopg2.errors.SyntaxError: syntax error at or near "customers"
+LINE 1:  SELECT * customers 
+                  ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 174, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 188, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_exemple.py", line 61, in extract
+    df = hook.get_pandas_df(sql)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/dbapi.py", line 138, in get_pandas_df
+    return psql.read_sql(sql, con=conn, params=parameters, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 608, in read_sql
+    chunksize=chunksize,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 2116, in read_query
+    cursor = self.execute(*args)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 2068, in execute
+    raise ex from exc
+pandas.io.sql.DatabaseError: Execution failed on sql ' SELECT * customers ': syntax error at or near "customers"
+LINE 1:  SELECT * customers 
+                  ^
+
+[2022-05-11 19:20:36,352] {taskinstance.py:1288} INFO - Marking task as FAILED. dag_id=Smart_ETL_Tool, task_id=extract, execution_date=20220511T192030, start_date=20220511T192035, end_date=20220511T192036
+[2022-05-11 19:20:36,693] {standard_task_runner.py:98} ERROR - Failed to execute job 160 for task extract (Execution failed on sql ' SELECT * customers ': syntax error at or near "customers"
+LINE 1:  SELECT * customers 
+                  ^
+; 3543)
+[2022-05-11 19:20:36,775] {local_task_job.py:154} INFO - Task exited with return code 1
+[2022-05-11 19:20:37,263] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check

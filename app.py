@@ -74,7 +74,7 @@ def filter():
     return render_template('filter.html',files_list=files_list,len=len(files_list))
 
 from filter import *
-L=[]
+
 @app.route('/transform/filter/<string:name>',methods=['GET','POST'])
 @login_required
 def function(name):
@@ -97,20 +97,23 @@ def function(name):
         path="charts/"+dir+"/"+name_chart
         df=read(final_path_files)
         X,y,discrete_features=preparation(df)
+        outfile=path_filtred_files+"/"+name[:-3]+"_"+"scores"
         if problem_type(y)==1:
             problem="Regression"
-            scores=mi_scores_for_regression(X,y,discrete_features)
-            plot_mi_scores(scores,final_path_charts)
-            L.append(scores)
+            if not os.path.exists(outfile):
+                scores=mi_scores_for_regression(X,y,discrete_features)
+                plot_mi_scores(scores,final_path_charts)
+                with open(outfile, 'wb') as fp:
+                    pickle.dump(scores, fp)
         else:
             problem="Classification"
-            scores=mi_scores_for_classification(X,y,discrete_features)
-            plot_mi_scores(scores,final_path_charts)
-            L.append(scores)
-        scores=L[0]
-        outfile=path_filtred_files+"/"+name[:-3]+"_"+"scores"
-        with open(outfile, 'wb') as fp:
-            pickle.dump(scores, fp)
+            if not os.path.exists(outfile):
+                scores=mi_scores_for_classification(X,y,discrete_features)
+                plot_mi_scores(scores,final_path_charts)
+                with open(outfile, 'wb') as fp:
+                    pickle.dump(scores, fp)
+        with open (outfile, 'rb') as fp:
+            scores = pickle.load(fp)
     return render_template('csv.html',path=path,length=len(scores),scores=scores,table=df.head().to_html(classes='dataframe'),filename=name[:-4],name=name,df=df,X=X,y=y,problem=problem)
 
 @app.route('/transform/filter/<string:name>/done!',methods=['GET','POST'])
@@ -124,7 +127,7 @@ def filtred(name):
     files_list=os.listdir(path_files)
     if name in files_list:
         final_path_files=os.path.join(path_files,name)
-        path_filtred_file=path_filtred_files+"/"+name
+        path_filtred_file=path_filtred_files+"/"+"filtred_"+name
         outfile=path_filtred_files+"/"+name[:-3]+"_"+"scores"
         with open (outfile, 'rb') as fp:
             scores = pickle.load(fp)
@@ -138,7 +141,7 @@ def download_file(name):
     parent_dir_filtred_files="E:/P2M/ETL/static/filtred_files/"
     dir=session['user']['name']
     path_filtred_files=os.path.join(parent_dir_filtred_files,dir)
-    path_filtred_file=path_filtred_files+"/"+name
+    path_filtred_file=path_filtred_files+"/"+"filtred_"+name
     return send_file(path_filtred_file,as_attachment=True)
 
 

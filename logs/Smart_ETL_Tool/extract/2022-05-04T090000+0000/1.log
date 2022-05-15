@@ -1,0 +1,40 @@
+[2022-05-05 13:12:33,288] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.extract scheduled__2022-05-04T09:00:00+00:00 [queued]>
+[2022-05-05 13:12:33,320] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.extract scheduled__2022-05-04T09:00:00+00:00 [queued]>
+[2022-05-05 13:12:33,321] {taskinstance.py:1249} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-05 13:12:33,322] {taskinstance.py:1250} INFO - Starting attempt 1 of 1
+[2022-05-05 13:12:33,323] {taskinstance.py:1251} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-05 13:12:33,429] {taskinstance.py:1270} INFO - Executing <Task(PythonOperator): extract> on 2022-05-04 09:00:00+00:00
+[2022-05-05 13:12:33,443] {standard_task_runner.py:52} INFO - Started process 2532 to run task
+[2022-05-05 13:12:33,453] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'Smart_ETL_Tool', 'extract', 'scheduled__2022-05-04T09:00:00+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/etl_exemple.py', '--cfg-path', '/tmp/tmp6xndamst', '--error-file', '/tmp/tmpzyrybe6s']
+[2022-05-05 13:12:33,456] {standard_task_runner.py:80} INFO - Job 8: Subtask extract
+[2022-05-05 13:12:33,622] {logging_mixin.py:109} INFO - Running <TaskInstance: Smart_ETL_Tool.extract scheduled__2022-05-04T09:00:00+00:00 [running]> on host 70e1e4d83c3a
+[2022-05-05 13:12:34,569] {taskinstance.py:1448} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=Smart_ETL_Tool
+AIRFLOW_CTX_TASK_ID=extract
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-04T09:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-05-04T09:00:00+00:00
+[2022-05-05 13:12:34,676] {base.py:79} INFO - Using connection to: id: mysql_db. Host: localhost, Port: 3306, Schema: classicmodels, Login: houssem, Password: ***, extra: {}
+[2022-05-05 13:12:37,998] {taskinstance.py:1774} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 174, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 188, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_exemple.py", line 59, in extract
+    df = hook.get_pandas_df(sql)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/dbapi.py", line 137, in get_pandas_df
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/mysql/hooks/mysql.py", line 166, in get_conn
+    return MySQLdb.connect(**conn_config)
+  File "/home/airflow/.local/lib/python3.7/site-packages/MySQLdb/__init__.py", line 123, in Connect
+    return Connection(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/MySQLdb/connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb._exceptions.OperationalError: (2002, "Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)")
+[2022-05-05 13:12:38,503] {taskinstance.py:1288} INFO - Marking task as FAILED. dag_id=Smart_ETL_Tool, task_id=extract, execution_date=20220504T090000, start_date=20220505T131233, end_date=20220505T131238
+[2022-05-05 13:12:39,201] {standard_task_runner.py:98} ERROR - Failed to execute job 8 for task extract ((2002, "Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)"); 2532)
+[2022-05-05 13:12:39,511] {local_task_job.py:154} INFO - Task exited with return code 1
+[2022-05-05 13:12:40,521] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check

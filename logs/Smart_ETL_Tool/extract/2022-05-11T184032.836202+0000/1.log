@@ -1,0 +1,32 @@
+[2022-05-11 18:40:36,669] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.extract manual__2022-05-11T18:40:32.836202+00:00 [queued]>
+[2022-05-11 18:40:36,692] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: Smart_ETL_Tool.extract manual__2022-05-11T18:40:32.836202+00:00 [queued]>
+[2022-05-11 18:40:36,692] {taskinstance.py:1249} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-11 18:40:36,693] {taskinstance.py:1250} INFO - Starting attempt 1 of 1
+[2022-05-11 18:40:36,693] {taskinstance.py:1251} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-11 18:40:36,922] {taskinstance.py:1270} INFO - Executing <Task(PythonOperator): extract> on 2022-05-11 18:40:32.836202+00:00
+[2022-05-11 18:40:36,927] {standard_task_runner.py:52} INFO - Started process 2818 to run task
+[2022-05-11 18:40:36,932] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'Smart_ETL_Tool', 'extract', 'manual__2022-05-11T18:40:32.836202+00:00', '--job-id', '157', '--raw', '--subdir', 'DAGS_FOLDER/etl_exemple.py', '--cfg-path', '/tmp/tmpyb8haj9t', '--error-file', '/tmp/tmp7m88eh0n']
+[2022-05-11 18:40:36,934] {standard_task_runner.py:80} INFO - Job 157: Subtask extract
+[2022-05-11 18:40:37,274] {logging_mixin.py:109} INFO - Running <TaskInstance: Smart_ETL_Tool.extract manual__2022-05-11T18:40:32.836202+00:00 [running]> on host 0b2ea813f779
+[2022-05-11 18:40:37,817] {taskinstance.py:1448} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=Smart_ETL_Tool
+AIRFLOW_CTX_TASK_ID=extract
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-11T18:40:32.836202+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-05-11T18:40:32.836202+00:00
+[2022-05-11 18:40:37,821] {logging_mixin.py:109} INFO - done
+[2022-05-11 18:40:37,821] {logging_mixin.py:109} INFO - <***.providers.postgres.hooks.postgres.PostgresHook object at 0x7f0f3cf16650>
+[2022-05-11 18:40:37,843] {base.py:79} INFO - Using connection to: id: postgres1_db. Host: 172.18.0.8, Port: 5432, Schema: ***, Login: ***, Password: ***, extra: {}
+[2022-05-11 18:40:47,110] {logging_mixin.py:109} INFO -    id         name
+0   1     can_read
+1   2     can_edit
+2   3   can_delete
+3   4   can_create
+4   5  menu_access
+5   6      can_get
+[2022-05-11 18:40:47,192] {python.py:175} INFO - Done. Returned value was: {'id': {0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6}, 'name': {0: 'can_read', 1: 'can_edit', 2: 'can_delete', 3: 'can_create', 4: 'menu_access', 5: 'can_get'}}
+[2022-05-11 18:40:48,153] {taskinstance.py:1288} INFO - Marking task as SUCCESS. dag_id=Smart_ETL_Tool, task_id=extract, execution_date=20220511T184032, start_date=20220511T184036, end_date=20220511T184048
+[2022-05-11 18:40:48,574] {local_task_job.py:154} INFO - Task exited with return code 0
+[2022-05-11 18:40:48,846] {local_task_job.py:264} INFO - 1 downstream tasks scheduled from follow-on schedule check
